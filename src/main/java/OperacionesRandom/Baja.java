@@ -1,12 +1,15 @@
-package POJO;
+package OperacionesRandom;
 
+import POJO.Atico;
+import POJO.Duplex;
+import POJO.Piso;
 import Utilidades.ControlData;
 import java.io.*;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
 // @author 
-public class Bajas {
+public class Baja {
 
     public static int bajas(File fDatos, int nRegs) throws IOException {
 
@@ -45,11 +48,11 @@ public class Bajas {
                 piso = new Duplex(referencia, 'D', nombre, cuotaFija, litrosAguaCaliente, pasosCalefaccion, terraza);
             }
 
-            if (piso.getReferencia().compareToIgnoreCase(referenciaBorrar) != 0) {
+            if (piso.getReferencia().compareToIgnoreCase(referenciaBorrar) == 0) {
                 rafTemp.seek(b * 140);
                 rafTemp.writeUTF(piso.getReferencia());
                 rafTemp.writeChar(piso.getTipoPiso());
-                rafTemp.writeUTF(nombre);
+                rafTemp.writeUTF(piso.getNombre());
                 rafTemp.writeFloat(piso.getCuotaFija());
                 rafTemp.writeFloat(piso.getLitrosAguaCaliente());
                 rafTemp.writeFloat(piso.getPasosCalefaccion());
@@ -58,7 +61,7 @@ public class Bajas {
                 if (piso.getTipoPiso() == 'D') {
                     rafTemp.writeFloat(((Duplex) piso).getCuotaExtra());
                 }
-                 if (piso.getTipoPiso() == 'A') {
+                if (piso.getTipoPiso() == 'A') {
                     rafTemp.writeFloat(((Atico) piso).getTerraza());
                 }
                 b++;
@@ -72,7 +75,7 @@ public class Bajas {
         temporal.renameTo(fDatos);
 
         if (b == nRegs) {
-            System.out.println("--- Piso NO ENCONTRADA ---");
+            System.out.println("--- Piso NO ENCONTRADO ---");
 
         } else {
             System.out.println("---  PISO BORRADO  ---");

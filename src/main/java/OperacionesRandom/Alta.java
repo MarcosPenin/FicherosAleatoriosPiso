@@ -90,7 +90,6 @@ public class Alta {
             piso.setTotalReciboComunidad(piso.getTotalReciboComunidad());
         }
         return piso;
-
     }
 
     static ArrayList<String> tipoPiso() {
