@@ -24,7 +24,10 @@ public class Atico extends Piso {
     public void setTerraza(float terraza) {
         this.terraza = terraza;
     }
-
+    
+  /**Añado un método para calcular el recibo, que llamarés cuando 
+     * se haga un alta o se modifique un registro
+     */
     @Override
     public float totalRbo() {
         this.setTotalReciboComunidad(this.getCuotaFija() + this.getLitrosAguaCaliente() * 0.40f + this.getPasosCalefaccion() * 0.70f + this.getTerraza() * 0.45f);

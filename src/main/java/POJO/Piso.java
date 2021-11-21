@@ -75,8 +75,8 @@ public abstract class Piso {
         return pasosCalefaccion;
     }
 
-    public void setPasosCalefaccion(float pasosCalefaccion) {
-        this.pasosCalefaccion = pasosCalefaccion;
+    public void setPasosCalefaccion(float pasosCalefaccion) {  
+        this.pasosCalefaccion=pasosCalefaccion;
     }
 
     public float getTotalReciboComunidad() {

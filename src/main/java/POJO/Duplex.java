@@ -25,11 +25,17 @@ public class Duplex extends Piso {
         this.cuotaExtra = cuotaExtra;
     }
 
+    /**Añado un método para calcular el recibo, que llamarés cuando 
+     * se haga un alta o se modifique un registro
+     */
+    
     @Override
     public float totalRbo() {
-        this.setTotalReciboComunidad(this.getCuotaExtra() + this.getLitrosAguaCaliente() * 0.40f + this.getCuotaExtra() * 0.70f);
+        this.setTotalReciboComunidad(this.getCuotaFija()+ (this.getLitrosAguaCaliente() * 0.40f) +(this.getPasosCalefaccion()*0.70f)
+                + this.getCuotaExtra());
         return this.getTotalReciboComunidad();
     }
+
 
     @Override
     public int getTamañoReal() {

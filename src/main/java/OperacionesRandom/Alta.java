@@ -27,7 +27,6 @@ public class Alta {
 
         if (piso.getTamañoReal() <= piso.getTamañoMax()) {
             RandomAccessFile rafDatos = new RandomAccessFile(fDatos, "rw");
-
             rafDatos.seek(nRegs * piso.getTamañoMax());
             rafDatos.writeUTF(piso.getReferencia());
             rafDatos.writeChar(piso.getTipoPiso());
@@ -79,7 +78,7 @@ public class Alta {
             System.out.println("¿Cuál es su cuota extra?");
             cuotaExtra=ControlData.lerFloat(sc);
             piso = new Duplex(referencia, tipoPiso, nombre, cuotaFija, litrosAguaCaliente, pasosCalefaccion, cuotaExtra);
-            piso.setTotalReciboComunidad(piso.getTotalReciboComunidad());
+            piso.setTotalReciboComunidad(piso.totalRbo());
 
         }
         if (opcion == 2) {
@@ -87,7 +86,7 @@ public class Alta {
             System.out.println("¿Cuántos metros de terraza tiene?");
             terraza = ControlData.lerFloat(sc);
             piso = new Atico(referencia, tipoPiso, nombre, cuotaFija, litrosAguaCaliente, pasosCalefaccion, cuotaExtra);
-            piso.setTotalReciboComunidad(piso.getTotalReciboComunidad());
+            piso.setTotalReciboComunidad(piso.totalRbo());
         }
         return piso;
     }

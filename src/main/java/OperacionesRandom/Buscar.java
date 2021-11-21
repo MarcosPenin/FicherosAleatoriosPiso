@@ -34,25 +34,29 @@ public class Buscar {
             String referencia = rafDatos.readUTF();
             char tipoPiso = rafDatos.readChar();
             String nombre = rafDatos.readUTF();
+            Float cuotaFija = rafDatos.readFloat();
+            Float litrosAguaCaliente = rafDatos.readFloat();
+            Float pasosCalefaccion = rafDatos.readFloat();
+            Float totalReciboComunidad = rafDatos.readFloat();
+            Float indeterminado = rafDatos.readFloat();
 
             if (nombreNuevo.compareToIgnoreCase(nombre) == 0) {
-                System.out.println("Referencia: " + referencia + "\nTipo piso: " + tipoPiso + "\nNombre: " + nombre + "\nCuotaFija: " + rafDatos.readUTF()
-                        + "\nLitros agua caliente: " + rafDatos.readFloat() + "\nPasos calefacción: " + rafDatos.readFloat() + "\nTotal recibo: " + rafDatos.readFloat());
+                 flag = true;
+                System.out.println("Referencia: " + referencia + "\nTipo piso: " + tipoPiso + "\nNombre: " + nombre + "\nCuotaFija: " + cuotaFija
+                        + "\nLitros agua caliente: " + litrosAguaCaliente + "\nPasos calefacción: " + pasosCalefaccion + "\nTotal recibo: " + totalReciboComunidad);
 
                 if (tipoPiso == 'D') {
-                    System.out.println("Cuota extra: )" + rafDatos.readFloat());
+                    System.out.println("Cuota extra: " + indeterminado);
                 }
                 if (tipoPiso == 'A') {
-                    System.out.println("Metros terraza: " + rafDatos.readFloat());
-                }
-                flag = true;
+                    System.out.println("Metros terraza: " + indeterminado);
+                }               
+                System.out.println("-----------------------------------");
+               
             }
-
-            if (!flag) {
-                System.out.println("--- PROPIETARIO NO ENCONTRADO ---");
-            }
-
         }
-
+        if (!flag) {
+            System.out.println("--- PROPIETARIO NO ENCONTRADO ---");
+        }
     }
 }

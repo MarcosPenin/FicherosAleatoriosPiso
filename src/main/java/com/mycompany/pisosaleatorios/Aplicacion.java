@@ -15,51 +15,50 @@ import java.util.Scanner;
  */
 public class Aplicacion {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         File fDatos = new File("DatosEmpresa.dat");
         Scanner sc = new Scanner(System.in);
+        try {
+            int nRegs = Leer.leer(fDatos);
+            Menu miMenu = new Menu(opciones());
+            byte opcion;
 
-        int nRegs = Leer.leer(fDatos);
-        Menu miMenu = new Menu(opciones());
-
-        byte opcion;
-
-        System.out.println("*********************************************************************************************");
-        System.out.println("**************************COMUNIDAD VALPARAISO********************************************");
-        do {
-
-            System.out.println(nRegs);
             System.out.println("*********************************************************************************************");
-            System.out.println("Escoja la operación que desea realizar");
-            miMenu.printMenu();
-            opcion = ControlData.lerByte(sc);
+            System.out.println("**************************COMUNIDAD VALPARAISO********************************************");
+            do {
+                System.out.println("*********************************************************************************************");
+                System.out.println("Escoja la operación que desea realizar");
+                miMenu.printMenu();
+                opcion = ControlData.lerByte(sc);
 
-            switch (opcion) {
+                switch (opcion) {
+                    case 1:
+                        nRegs = Alta.alta(fDatos, nRegs);
+                        break;
+                    case 2:
+                        //No borra cuando solo hay un registro
+                        nRegs = Baja.bajas(fDatos, nRegs);
+                        break;
+                    case 3:
+                        Modificar.modificar(fDatos, nRegs);
+                        break;
+                    case 4:
+                        Visualizar.visualizar(fDatos, nRegs);
+                        break;
+                    case 5:
+                        Visualizar.visualizarRecibos(fDatos, nRegs);
+                        break;
+                    case 6:
+                        Buscar.buscar(fDatos, nRegs);
+                        break;
+                }
 
-                case 1:
-                    nRegs=Alta.alta(fDatos, nRegs);
-                    break;
-                case 2:
-                    
-                    //No borra cuando solo hay un registro
-                    nRegs=Baja.bajas(fDatos, nRegs);
-                    break;
-                case 3:
-                    Modificar.modificar(fDatos, nRegs);
-                    break;
-                case 4:
-                    Visualizar.visualizar(fDatos, nRegs);
-                    break;
-                case 5:
-                    Visualizar.visualizar(fDatos, nRegs);
-                    break;
-                case 6:
-                    Buscar.buscar(fDatos, nRegs);
-                    break;
-            }
+            } while (opcion != 7);
+        } catch (IOException e) {
+            System.out.println("Se ha producido un error: " + e.getMessage());
+        }
 
-        } while (opcion != 7);
     }
 
     static ArrayList<String> opciones() {
